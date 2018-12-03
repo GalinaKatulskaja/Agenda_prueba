@@ -90,7 +90,7 @@ public class Contacto {
                 }
             else 
             {
-            throw new IllegalArgumentException("El teléfono no tiene un formato válido.");
+            throw new IllegalArgumentException("El correo no tiene un formato válido.");
             }
         } 
 

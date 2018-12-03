@@ -19,6 +19,13 @@ public class Contacto {
     private String nombre;
     private String telefono;
     private String correo;
+    
+    public Contacto(String nombre, String telefono, String correo)
+    {
+        setNombre(nombre);
+        setTelefono(telefono);
+        setCorreo(correo);
+    }
 
     public String getNombre() {
         return nombre;

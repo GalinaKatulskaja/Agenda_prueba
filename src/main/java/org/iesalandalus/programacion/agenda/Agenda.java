@@ -15,7 +15,7 @@ public class Agenda {
     
     private static final int MAX_CONTACTOS = 0;
     private int numContactos;
-    private Contacto contacto;
+    private Contacto [] contacto = null;
     
     public Agenda(int numContactos)
     {        
@@ -31,9 +31,10 @@ public class Agenda {
     public int getNumContactos() {
         return numContactos;
     }
-    public Contacto getContacto() {
-        return contacto;
+    public Contacto[] getContacto() {
+        return this.contacto;
     }
+
 }
 
     

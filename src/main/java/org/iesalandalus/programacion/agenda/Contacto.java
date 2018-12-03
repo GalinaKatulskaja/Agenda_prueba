@@ -14,7 +14,7 @@ import java.util.regex.Pattern;
  * @author Galina
  */
 //la clase Contacto con sus atributos 
-public class Contacto {
+public final class Contacto {
     private static final String ER_TELEFONO="[69][0-9]{8}";
     private static final String ER_CORREO="^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,4})$";
     private String nombre;
@@ -32,6 +32,10 @@ public class Contacto {
         setNombre(nombre);
         setTelefono(telefono);
         setCorreo(correo);
+    }
+
+    Contacto() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public String getNombre() {

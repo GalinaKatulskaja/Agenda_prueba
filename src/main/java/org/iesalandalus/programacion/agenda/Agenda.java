@@ -11,5 +11,5 @@ package org.iesalandalus.programacion.agenda;
  */
 public class Agenda {
     private static final int MAX_CONTACTOS = 0;
-    private int numContactos;
+    private int numContactos = 0;
 }

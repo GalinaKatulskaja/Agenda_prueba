@@ -7,7 +7,5 @@ public class MainApp {
 
 	public static void main(String[] args) {
 		System.out.println("Programa para gestionar una agenda de contactos");
-                Contacto contacto = new Contacto();
-	}
-	
+        }
 }

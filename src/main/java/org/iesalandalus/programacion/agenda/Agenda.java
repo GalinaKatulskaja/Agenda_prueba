@@ -5,6 +5,8 @@
  */
 package org.iesalandalus.programacion.agenda;
 
+import javax.naming.OperationNotSupportedException;
+
 /**
  *
  * @author Galina
@@ -13,27 +15,67 @@ public class Agenda {
     private static final String MENSAJE_EXCEPCION = "Debería haber saltado la excepción.";
     private static final String MENSAJE_NO_EXCEPCION = "No debería haber saltado la excepción.";
     
-    private static final int MAX_CONTACTOS = 0;
+    private static final int MAX_CONTACTOS = 5;
     private int numContactos;
-    private Contacto [] contacto = null;
+    private Contacto [] contactos = null;
     
-    public Agenda(int numContactos)
-    {        
-        if (numContactos>0)
+    //creamos el constructor por defecto 
+    public Agenda()
+    {
+        contactos = new Contacto[MAX_CONTACTOS];
+    }
+    
+        public void añadir(Contacto contacto )
         {
-            this.numContactos = numContactos;
-
+             int indice;
+             try {
+                indice = buscarPrimerIndiceComprobandoExistencia(contacto);
+                if(indiceNoSuperaTamano(indice)) {
+                    this.contactos[indice] = contacto;
+                } else {
+                    System.out.println("El array está lleno");
+                }
+                } catch (OperationNotSupportedException e) {
+                    System.out.println("Operación  no soportada");
+                    e.getMessage();
+                }   
         }
-        else
-            throw new IllegalArgumentException("ERROR: Ha introducido un número de páginas no válido");
-        }
+            
+        private int buscarPrimerIndiceComprobandoExistencia(Contacto contacto) throws OperationNotSupportedException
+        {
+            int indice=0;
+            boolean encontradoContacto=false;
 
+            for(int i=0;i<contactos.length && !encontradoContacto;i++)
+            {
+                if (contactos[i]==null)
+                {
+                    encontradoContacto=true;
+                    indice = i;
+                }
+                else if (contactos[i].equals(contacto))
+                {
+                    throw new OperationNotSupportedException("Ya existe un contacto con ese nombre.");
+                }               
+            }
+
+            return indice;
+        }
+        private boolean indiceNoSuperaTamano(int i)
+        {
+            if (i<MAX_CONTACTOS)
+                return true;
+           else
+                return false;
+            
+        }
     public int getNumContactos() {
         return numContactos;
     }
     public Contacto[] getContacto() {
-        return this.contacto;
+        return this.contactos;
     }
+    
 
 }
 

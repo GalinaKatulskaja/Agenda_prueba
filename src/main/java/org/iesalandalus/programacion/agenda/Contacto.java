@@ -31,7 +31,7 @@ public class Contacto {
         return nombre;
     }
 
-    public void setNombre(String nombre) {
+    private void setNombre(String nombre) {
         
         boolean contactoCreado = false;
         if (this.nombre != null) {

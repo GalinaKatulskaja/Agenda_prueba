@@ -17,7 +17,7 @@ public class Agenda {
     
     private static final int MAX_CONTACTOS = 5;
     private int numContactos;
-    private Contacto [] contactos = null;
+    private Contacto[] contactos = null;
     
     //creamos el constructor por defecto 
     public Agenda()
@@ -26,7 +26,7 @@ public class Agenda {
     }
     //creamos el metodo añadir, haciendo la llamada de los metodos internos
     //tambien se crea una exepción para detectar los errores y captarlas 
-        public void añadir(Contacto contacto )
+        public void aniadir(Contacto contacto )
         {
              int indice;
              try {
@@ -111,7 +111,34 @@ public class Agenda {
             
             return indiceCliente;
         }
-        
+        /*Crea el método borrar que borrará un contacto de la lista dejando
+        la misma compactada (los contactos válidos al principio y los nulos
+        al final). Apóyate en el método desplazarUnaPosicionHaciaIzquierda.
+El método debe informar de los posibles errores mediante la excepcion 
+OperationNotSupportedException. */
+        public void borrar(String contacto) throws OperationNotSupportedException
+        {
+          boolean encontrado = false;
+          int indice=0;
+            for (int i=0;i<contactos.length;i++) 
+            {//comprobamos que el contacto no es nulo  y comparamos que el nombre de cliente es igual a contacto
+                if (contactos[i] !=null && contactos[i].equals(contacto)) 
+                {
+                encontrado = true;
+                desplazarUnaPosicionHaciaIzquierda(indice);
+                }else               
+                {
+                    throw new OperationNotSupportedException("El contactoo a borrar no existe.");
+                }  
+            }
+        }    
+        private void desplazarUnaPosicionHaciaIzquierda(int indice)
+        {
+            for (int i = indice; i < contactos.length - 1 && contactos[i] != null; i++) 
+        {
+            contactos[i] = contactos[i+1];
+	}
+        }
     public int getNumContactos() {
         return numContactos;
     }

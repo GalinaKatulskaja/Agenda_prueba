@@ -14,7 +14,7 @@ import java.util.regex.Pattern;
  * @author Galina
  */
 //la clase Contacto con sus atributos 
-public final class Contacto {
+public class Contacto {
     private static final String ER_TELEFONO="[69][0-9]{8}";
     private static final String ER_CORREO="^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,4})$";
     private String nombre;
@@ -62,7 +62,9 @@ public final class Contacto {
     }
     //creamos el seter telefono
     public void setTelefono(String telefono) {
-        
+        /*Para la validación de telefono electronico voy usar  el método estático 
+            compile de la clase Pattern que permite crear expresión 
+            regular o patrón.*/
         if (telefono != null && telefono.equals(""))
             if(Pattern.matches(ER_TELEFONO, telefono))
             {

@@ -51,6 +51,11 @@ public final class Contacto {
             throw new IllegalArgumentException("El nombre un contacto no puede ser nulo o vacío.");
         }
     }
+     // creamos el metodo que devuelve los iniciales 
+    private String getIniciales()
+    {
+        return iniciales;
+    }
     // creamos el getter de telefono
     public String getTelefono() {
         return telefono;
@@ -98,11 +103,6 @@ public final class Contacto {
     @Override
     public String toString() {
         return "Contacto{" + "nombre=" + nombre + ", telefono=" + telefono + ", correo=" + correo + '}';
-    }
-    // creamos el metodo que devuelve los iniciales 
-    public String getIniciales()
-    {
-        return iniciales;
     }
     // creamos el hashcode
     @Override

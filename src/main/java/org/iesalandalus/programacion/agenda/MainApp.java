@@ -5,9 +5,14 @@ import org.iesalandalus.programacion.utilidades.Entrada;
 
 public class MainApp {
 
-	public static void main(String[] args) {
-		System.out.println("Programa para gestionar una agenda de contactos");
-                
+    private static final String ERROR = "ERROR! Vuelva a intentarlo";
+    private static final String EXITO = "La operación se realizo con ÉXITO";
+    private static Agenda agenda;
+    private static Contacto contacto;
+    
+        public static void main(String[] args) throws OperationNotSupportedException
+        {
+            System.out.println("Programa para gestionar una agenda de contactos");
             int opcion;
                 do 
                 {
@@ -45,24 +50,68 @@ public class MainApp {
 
         return opcion;
     }
-        private static void ejecutarOpcion(int opcion)
+        private static void ejecutarOpcion(int opcion) throws OperationNotSupportedException
         {
             switch(opcion)
             {
                 case 1:
-                    
+                    aniadirContacto();
                     break;
                 case 2:
-                    
+                    buscarContacto();
                     break;
                 case 3:   
-                    
+                    borrarContacto();
                     break;
                 case 4:
-                    
+                    listarAgenda();
                     break;
                     
             }        
             
         }
+
+    private static void aniadirContacto() throws OperationNotSupportedException
+    {
+        agenda = new Agenda();
+        try{
+            agenda.aniadir(contacto);
+        
+         }catch (IllegalArgumentException e) {
+                    System.out.println("Operación  no soportada"+ e.getMessage());
+                  
+                }   
+    }
+
+    private static void buscarContacto() 
+    {
+        try{
+        agenda.buscar(EXITO);
+        }catch (IllegalArgumentException e) {
+                    System.out.println("Operación  no soportada");
+                    e.getMessage();
+        }
+        
+    }
+
+    private static void borrarContacto() throws OperationNotSupportedException {
+        try{
+        agenda.borrar(EXITO);
+        }catch (IllegalArgumentException e) {
+                    System.out.println("Operación  no soportada");
+                    e.getMessage();
+        }
+    }
+
+    private static void listarAgenda() {
+        
+        
+        /*for (int i=0;i<contactos.length;i++)
+        {
+            if(contactos[i] !=null)
+                System.out.println(contactos[i]);
+        }*/
+            
+    }
+    
 }

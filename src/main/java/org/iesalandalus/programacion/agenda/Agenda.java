@@ -14,7 +14,6 @@ import javax.naming.OperationNotSupportedException;
 public class Agenda {
     private static final String MENSAJE_EXCEPCION = "Debería haber saltado la excepción.";
     private static final String MENSAJE_NO_EXCEPCION = "No debería haber saltado la excepción.";
-    
     private static final int MAX_CONTACTOS = 5;
     private int numContactos;
     private Contacto[] contactos = null;
@@ -57,7 +56,8 @@ public class Agenda {
                 else if (contactos[i].equals(contacto))
                 {
                     throw new OperationNotSupportedException("Ya existe un contacto con ese nombre.");
-                }               
+                }  
+                throw new OperationNotSupportedException("El array esta lleno.");
             }
 
             return indice;
@@ -144,6 +144,10 @@ OperationNotSupportedException. */
     }
     public Contacto[] getContacto() {
         return this.contactos;
+    }
+
+    public void anadir(Contacto contacto1) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 

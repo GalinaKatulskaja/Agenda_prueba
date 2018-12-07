@@ -39,21 +39,32 @@ public class Contacto {
         return nombre;
     }
     //creamos el seter de nombre con el modificador de acceso privado 
-    private void setNombre(String nombre) {
+    private void setNombre(String nombre) 
+    {
         
-        boolean contactoCreado = false;
+         boolean contactoCreado = false;
+        if (this.nombre ==null)
+            {
+            throw new IllegalArgumentException("El nombre de un contacto no puede ser nulo o vacío." );
+        }
         if (this.nombre != null) {
             contactoCreado = true;
         }
         if (nombre != null && nombre.equals("") && contactoCreado != true) {
             this.nombre = nombre;
         } else {
-            throw new IllegalArgumentException("El nombre un contacto no puede ser nulo o vacío.");
+            throw new IllegalArgumentException("El nombre de un contacto no puede ser nulo o vacio." );
         }
     }
      // creamos el metodo que devuelve los iniciales 
     private String getIniciales()
     {
+        String []nombreCorto=nombre.split(" ");
+        for(int i=0;i<nombreCorto.length;i++)
+        {
+            String iniciales = "";
+            iniciales = iniciales + nombreCorto[i].charAt(0);
+        }
         return iniciales;
     }
     // creamos el getter de telefono
@@ -65,13 +76,18 @@ public class Contacto {
         /*Para la validación de telefono electronico voy usar  el método estático 
             compile de la clase Pattern que permite crear expresión 
             regular o patrón.*/
+        if (this.telefono==null)
+            {
+            throw new IllegalArgumentException("El teléfono de un contacto no puede ser nulo o vacio.");
+            }
+            
         if (telefono != null && telefono.equals(""))
             if(Pattern.matches(ER_TELEFONO, telefono))
             {
                 this.telefono = telefono;
             }else
             {
-            throw new IllegalArgumentException("El teléfono de un contacto no puede ser nulo o vacío.");
+            throw new IllegalArgumentException("El teléfono de un contacto no puede ser nulo o vacio.");
             }   
         else 
         {
@@ -87,6 +103,10 @@ public class Contacto {
          /*Para la validación de correo electronico voy usar  el método estático 
             compile de la clase Pattern que permite crear expresión 
             regular o patrón.*/
+            if (this.correo==null)
+            {
+            throw new IllegalArgumentException("El teléfono de un contacto no puede ser nulo o vacio.");
+            }
              if (correo != null && correo.equals("")) 
                 if (Pattern.matches(ER_CORREO, correo))
                 {
@@ -104,7 +124,7 @@ public class Contacto {
     // creamos el metodo to string 
     @Override
     public String toString() {
-        return "Contacto{" + "nombre=" + nombre + ", telefono=" + telefono + ", correo=" + correo + '}';
+        return getIniciales() + "{"+ nombre + ", telefono=" + telefono + ", correo=" + correo + '}';
     }
     // creamos el hashcode
     @Override

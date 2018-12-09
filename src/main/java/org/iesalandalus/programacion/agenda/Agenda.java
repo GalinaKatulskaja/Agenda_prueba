@@ -25,7 +25,7 @@ public class Agenda {
     }
     //creamos el metodo añadir, haciendo la llamada de los metodos internos
     //tambien se crea una exepción para detectar los errores y captarlas 
-        public void aniadir(Contacto contacto )
+        public void anadir(Contacto contacto )
         {         
              int indice;
              try {
@@ -35,9 +35,9 @@ public class Agenda {
                 } else {
                     System.out.println("El array está lleno");
                 }
-                } catch (OperationNotSupportedException e) {
+                } catch(OperationNotSupportedException e) {
                     System.out.println("Operación  no soportada");
-                    e.getMessage();
+                 
                 }   
         }
         //se crea un metodo para buscar el primer indice libre    

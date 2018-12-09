@@ -57,7 +57,7 @@ public class MainApp {
             switch(opcion)
             {
                 case 1:
-                    aniadirContacto();
+                    anadirContacto();
                     break;
                 case 2:
                     buscarContacto();
@@ -73,7 +73,7 @@ public class MainApp {
             
         }
 //añade los contactos a la agenda telefonica
-    private static void aniadirContacto() throws OperationNotSupportedException
+    private static void anadirContacto() throws OperationNotSupportedException
     {
         agenda = new Agenda();
         
@@ -93,7 +93,7 @@ public class MainApp {
        
         try{
              Contacto contacto1 = new Contacto(nombre,telefono,correo);
-                agenda.aniadir(contacto1);
+                agenda.anadir(contacto1);
                 System.out.println(contacto1.toString());
 		System.out.println(EXITO);
                 

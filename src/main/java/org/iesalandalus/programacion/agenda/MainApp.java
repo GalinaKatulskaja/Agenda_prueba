@@ -89,8 +89,7 @@ public class MainApp {
         
         System.out.println("Introduce el correo electronico del contacto ");
         correo = Entrada.cadena();
-        
-       
+ 
         try{
              Contacto contacto1 = new Contacto(nombre,telefono,correo);
                 agenda.anadir(contacto1);

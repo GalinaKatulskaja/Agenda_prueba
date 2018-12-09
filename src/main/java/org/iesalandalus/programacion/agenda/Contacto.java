@@ -54,13 +54,12 @@ public class Contacto {
      // creamos el metodo que devuelve los iniciales 
     private String getIniciales()
     {
-       
+       String iniciales= "";
         String[] nombreCorto=this.nombre.split(" ");
-        for(int i=0;i<nombreCorto.length;i++)
-        {
-            iniciales = iniciales + nombreCorto[i].charAt(0);
+        for (String nombreCorto1 : nombreCorto) {
+            iniciales += nombreCorto1.charAt(0);
         }
-        return iniciales;
+        return iniciales.toUpperCase();
     }
     // creamos el getter de telefono
     public String getTelefono() {
@@ -73,7 +72,7 @@ public class Contacto {
             regular o patrón.*/
         
             
-        if (telefono != null | telefono.equals(""))
+        if (telefono != null || telefono.equals(""))
             if(Pattern.matches(ER_TELEFONO, telefono))
             {
                 this.telefono = telefono;
@@ -113,7 +112,7 @@ public class Contacto {
     // creamos el metodo to string 
     @Override
     public String toString() {
-        return iniciales + "{"+ nombre + ", telefono=" + telefono + ", correo=" + correo + '}';
+        return getIniciales()+" [" + telefono+"," + correo + "]";
     }
     // creamos el hashcode
     @Override

@@ -35,9 +35,9 @@ public class Agenda {
                 } else {
                     System.out.println("El array está lleno");
                 }
-                } catch(OperationNotSupportedException e) {
+                } catch (OperationNotSupportedException e) {
                     System.out.println("Operación  no soportada");
-                 
+                    e.getMessage();
                 }   
         }
         //se crea un metodo para buscar el primer indice libre    

@@ -6,7 +6,7 @@ import org.junit.Test;
 
 public class ContactoTest {
 	
-	/*private static final String MENSAJE_EXCEPCION = "Debería haber saltado la excepción.";
+	private static final String MENSAJE_EXCEPCION = "Debería haber saltado la excepción.";
 
 	@Test
 	public void constructorValidoTest() {
@@ -147,6 +147,6 @@ public class ContactoTest {
 		assertNotEquals(contacto1, contacto4);
 		assertEquals(contacto1, contacto2);
 		assertEquals(contacto1, contacto3);
-	}*/
+	}
 
 }

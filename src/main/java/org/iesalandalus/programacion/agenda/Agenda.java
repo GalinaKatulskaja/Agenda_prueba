@@ -16,7 +16,7 @@ public class Agenda {
     private static final String MENSAJE_NO_EXCEPCION = "No debería haber saltado la excepción.";
     private static final int MAX_CONTACTOS = 5;
     private int numContactos;
-    private Contacto[] contactos = null;
+    private Contacto[] contactos;
     
     //creamos el constructor por defecto 
     public Agenda()
@@ -26,12 +26,12 @@ public class Agenda {
     //creamos el metodo añadir, haciendo la llamada de los metodos internos
     //tambien se crea una exepción para detectar los errores y captarlas 
         public void aniadir(Contacto contacto )
-        {
+        {         
              int indice;
              try {
                 indice = buscarPrimerIndiceComprobandoExistencia(contacto);
                 if(indiceNoSuperaTamano(indice)) {
-                    this.contactos[indice] = contacto;
+                    contactos[indice] = contacto;
                 } else {
                     System.out.println("El array está lleno");
                 }
@@ -76,7 +76,7 @@ public class Agenda {
         {
             
              //llamamos el metodo buscarIndiceCliente, para recorrer el array de clientes y compararmos con los contactos existentes. 
-                int indice= buscarIndiceCliente(contacto);
+                int indice = buscarIndiceCliente(contacto);
                 Contacto encontrado = null;
                 if(indice<contactos.length)
                 {
@@ -143,13 +143,12 @@ OperationNotSupportedException. */
         return numContactos;
     }
     public Contacto[] getContacto() {
-        return this.contactos;
+            
+        for(int i=0;i<contactos.length;i++){
+             System.out.println(contactos[i]);
     }
-
-    public void anadir(Contacto contacto1) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return contactos;
     }
-    
 
 }
 

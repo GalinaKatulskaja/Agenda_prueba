@@ -9,7 +9,7 @@ public class MainApp {
     private static final String EXITO = "La operación se realizo con ÉXITO";
     private static Agenda agenda;
     private static Contacto contacto;
-    
+    //elegir la opcion del menu
         public static void main(String[] args) throws OperationNotSupportedException
         {
             System.out.println("Programa para gestionar una agenda de contactos");
@@ -23,6 +23,7 @@ public class MainApp {
 
                 System.out.println("Fin del trabajo con Agenda!!!!");
             }
+        //el metodo que muestra menu
         private static void mostrarMenu() 
     {
         System.out.println("");
@@ -44,12 +45,13 @@ public class MainApp {
 	int opcion;
 	do 
         {
-            System.out.println("Elige una opción (0-6): ");
+            System.out.println("Elige una opción (0-4): ");
             opcion = Entrada.entero();
 	} while (opcion < 0 || opcion > 4);
 
         return opcion;
     }
+        //el metodo para elegir el menu
         private static void ejecutarOpcion(int opcion) throws OperationNotSupportedException
         {
             switch(opcion)
@@ -70,48 +72,92 @@ public class MainApp {
             }        
             
         }
-
+//añade los contactos a la agenda telefonica
     private static void aniadirContacto() throws OperationNotSupportedException
     {
         agenda = new Agenda();
-        try{
-            agenda.aniadir(contacto);
         
+        String nombre;
+        String telefono;
+        String correo;
+        
+        System.out.println("Introduce el nombre del contacto ");   
+        nombre = Entrada.cadena();
+        
+        System.out.println("Introduce el telefono del contacto ");
+        telefono = Entrada.cadena();
+        
+        System.out.println("Introduce el correo electronico del contacto ");
+        correo = Entrada.cadena();
+        
+       
+        try{
+             Contacto contacto1 = new Contacto(nombre,telefono,correo);
+                agenda.aniadir(contacto1);
+                System.out.println(contacto1.toString());
+		System.out.println(EXITO);
+                
          }catch (IllegalArgumentException e) {
                     System.out.println("Operación  no soportada"+ e.getMessage());
                   
                 }   
+      ejecutarOpcion(elegirOpcion());  
     }
-
-    private static void buscarContacto() 
+    //el metodo para busqueda de contacto 
+    private static void buscarContacto() throws OperationNotSupportedException 
     {
+        String nombre;
+        
+        System.out.println("Introduce el nombre del contacto  ");
+        nombre = Entrada.cadena();
+        
         try{
-        agenda.buscar(EXITO);
+        agenda.buscar(nombre);
         }catch (IllegalArgumentException e) {
                     System.out.println("Operación  no soportada");
                     e.getMessage();
         }
-        
+        ejecutarOpcion(elegirOpcion());
     }
-
-    private static void borrarContacto() throws OperationNotSupportedException {
+    //borrar el contacto de la agenda
+    private static void borrarContacto() throws OperationNotSupportedException 
+    {
+        
+        String nombre;
+        
+        System.out.println("Introduce el nombre del contacto  ");
+        nombre = Entrada.cadena();
+        
+        boolean encontrado = false;
+        Contacto[] contactos = agenda.getContacto();
+        
         try{
-        agenda.borrar(EXITO);
-        }catch (IllegalArgumentException e) {
-                    System.out.println("Operación  no soportada");
-                    e.getMessage();
-        }
-    }
+           agenda.borrar(nombre);
 
-    private static void listarAgenda() {
+        } catch (OperationNotSupportedException e) {
+            e.getMessage();
+        }
+        if (encontrado == false) {
+            System.out.println(ERROR);
+        } else {
+            System.out.println(EXITO);
+        }
+        ejecutarOpcion(elegirOpcion());
+    }
+//muestra todos los contactos de la agenda
+    private static void listarAgenda() throws OperationNotSupportedException {
         
+        int lista=0;
+        Contacto[] contactos = agenda.getContacto();
         
-        /*for (int i=0;i<contactos.length;i++)
+        for (int i=0;i<agenda.getNumContactos();i++)
         {
             if(contactos[i] !=null)
-                System.out.println(contactos[i]);
-        }*/
-            
+                lista++;
+                System.out.println(contactos[i].toString());
+                
+        }
+       ejecutarOpcion(elegirOpcion());     
     }
     
 }

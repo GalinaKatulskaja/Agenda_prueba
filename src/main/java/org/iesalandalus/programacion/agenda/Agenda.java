@@ -5,6 +5,7 @@
  */
 package org.iesalandalus.programacion.agenda;
 
+import java.util.Arrays;
 import javax.naming.OperationNotSupportedException;
 
 /**
@@ -25,6 +26,7 @@ public class Agenda {
     }
     //creamos el metodo añadir, haciendo la llamada de los metodos internos
     //tambien se crea una exepción para detectar los errores y captarlas 
+  
         public void anadir(Contacto contacto )
         {         
              int indice;
@@ -139,15 +141,21 @@ OperationNotSupportedException. */
             contactos[i] = contactos[i+1];
 	}
         }
-    public int getNumContactos() {
+    public int getNumContactos() 
+    {
+        for (int i = 0; i < contactos.length - 1; i++) 
+        {
+            if (contactos[i] != null)
+            {
+		numContactos += 1;
+            }
+	}
         return numContactos;
     }
     public Contacto[] getContacto() {
-            
-        for(int i=0;i<contactos.length;i++){
-             System.out.println(contactos[i]);
-    }
-        return contactos;
+        Contacto[] clonContactos = Arrays.copyOf(contactos, contactos.length);
+	return clonContactos;
+       
     }
 
 }

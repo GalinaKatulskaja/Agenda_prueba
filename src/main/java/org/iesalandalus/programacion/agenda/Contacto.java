@@ -20,7 +20,6 @@ public class Contacto {
     private String nombre;
     private String telefono;
     private String correo;
-    private String iniciales;
     /**
      * 
      * @param nombre
@@ -70,20 +69,15 @@ public class Contacto {
         /*Para la validación de telefono electronico voy usar  el método estático 
             compile de la clase Pattern que permite crear expresión 
             regular o patrón.*/
-        
-            
-        if (telefono != null || telefono.equals(""))
-            if(Pattern.matches(ER_TELEFONO, telefono))
-            {
-                this.telefono = telefono;
-            }else
-            {
-            throw new IllegalArgumentException("El teléfono de un contacto no puede ser nulo o vacio.");
-            }   
-        else 
-        {
-        throw new IllegalArgumentException("El teléfono no tiene un formato válido.");
-        }
+     		if ( telefono == null || telefono.equals("")) {
+			throw new IllegalArgumentException("El teléfono de un contacto no puede ser nulo o vacío.");
+		} else {
+			if (Pattern.matches(ER_TELEFONO,telefono)) {
+				this.telefono = telefono;
+			}else{
+				throw new IllegalArgumentException("El teléfono no tiene un formato válido.");
+			}
+		}
     }
     //creamos el getter de correo
     public String getCorreo() {
@@ -94,25 +88,20 @@ public class Contacto {
          /*Para la validación de correo electronico voy usar  el método estático 
             compile de la clase Pattern que permite crear expresión 
             regular o patrón.*/
-            
-             if (correo != null || correo.equals("")) 
-                if (Pattern.matches(ER_CORREO, correo))
-                {
-                this.correo = correo;
-                } 
-                else 
-                {
+        if (correo == null || correo.equals("")) {
+            throw new IllegalArgumentException("El correo de un contacto no puede ser nulo o vacío.");
+        } else {
+            if (Pattern.matches(ER_CORREO,correo)) {
+		this.correo = correo;
+            }else {
                 throw new IllegalArgumentException("El correo no tiene un formato válido.");
-                }
-            else 
-            {
-            throw new IllegalArgumentException("El correo no tiene un formato válido.");
+		}
             }
         } 
     // creamos el metodo to string 
     @Override
     public String toString() {
-        return getIniciales()+" [" + telefono+"," + correo + "]";
+        return getIniciales()+" ["+telefono+"," +correo+"]";
     }
     // creamos el hashcode
     @Override
@@ -135,15 +124,21 @@ public class Contacto {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Contacto other = (Contacto) obj;
+        Contacto other = (Contacto) obj;
         if (nombre == null)
         {
             if(other.nombre != null)
                 return false;
         }
         else if(!nombre.equalsIgnoreCase(other.nombre))//el metodo que compara los nombres sin tener en cuenta mayusculas o minusculas 
-        {return false;
+        {
+            return false;
+        } 
+        else 
+        {
+            return true;
         }
+        
         if (!Objects.equals(this.nombre, other.nombre)) {
             return false;
         }

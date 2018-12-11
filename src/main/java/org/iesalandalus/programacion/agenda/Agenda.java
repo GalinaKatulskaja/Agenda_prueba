@@ -13,8 +13,6 @@ import javax.naming.OperationNotSupportedException;
  * @author Galina
  */
 public class Agenda {
-    private static final String MENSAJE_EXCEPCION = "Debería haber saltado la excepción.";
-    private static final String MENSAJE_NO_EXCEPCION = "No debería haber saltado la excepción.";
     private static final int MAX_CONTACTOS = 5;
     private int numContactos;
     private Contacto[] contactos;
@@ -23,24 +21,24 @@ public class Agenda {
     public Agenda()
     {
         this.contactos = new Contacto[MAX_CONTACTOS];
+        this.numContactos = 0;
     }
     //creamos el metodo añadir, haciendo la llamada de los metodos internos
     //tambien se crea una exepción para detectar los errores y captarlas 
   
-        public void anadir(Contacto contacto )
+        public void anadir(Contacto contacto ) throws OperationNotSupportedException
         {         
-             int indice;
+             int indice=0;
              try {
                 indice = buscarPrimerIndiceComprobandoExistencia(contacto);
+                } catch (OperationNotSupportedException e) {                
+                    e.getMessage();
+                }   
                 if(indiceNoSuperaTamano(indice)) {
                     contactos[indice] = contacto;
                 } else {
-                    System.out.println("El array está lleno");
-                }
-                } catch (OperationNotSupportedException e) {
-                    System.out.println("Operación  no soportada");
-                    e.getMessage();
-                }   
+                     throw new OperationNotSupportedException("El array esta lleno.");
+                     }
         }
         //se crea un metodo para buscar el primer indice libre    
         private int buscarPrimerIndiceComprobandoExistencia(Contacto contacto) throws OperationNotSupportedException
@@ -58,8 +56,7 @@ public class Agenda {
                 else if (contactos[i].equals(contacto))
                 {
                     throw new OperationNotSupportedException("Ya existe un contacto con ese nombre.");
-                }  
-                throw new OperationNotSupportedException("El array esta lleno.");
+                }                 
             }
 
             return indice;
@@ -71,42 +68,30 @@ public class Agenda {
                 return true;
            else
                 return false;
-            
         }
         //creamos el metodo buscar
         public Contacto buscar(String contacto)
         {
-            
              //llamamos el metodo buscarIndiceCliente, para recorrer el array de clientes y compararmos con los contactos existentes. 
                 int indice = buscarIndiceCliente(contacto);
                 Contacto encontrado = null;
                 if(indice<contactos.length)
                 {
                    encontrado = contactos[indice];
-                    System.out.println("El contacto " + contacto);
-                    return encontrado;
                 }
-                else {
-                    System.out.println("No se encontró el contacto");
-                }
-                
-            return encontrado;
-                
+                else{return null;}    
+            return encontrado;       
         }
-        
-        
         //creamos el metodo privado para apoyarnos en la busqueda de los contactos
         private int buscarIndiceCliente(String cliente)
         {   
             Contacto contacto =null;
             int indiceCliente = 0;
-            boolean encontrado =false;
             for (int i=0;i<contactos.length;i++) 
             {//comprobamos que el contacto no es nulo  y comparamos que el nombre de cliente es igual a contacto
-                if (contactos[i] !=null && contacto.getNombre().equals(cliente)) 
+                if (contactos[i] !=null && contacto.getNombre().equals(contacto)) 
                 {
-                encontrado = true;
-                return indiceCliente;
+                return indiceCliente =i;
                 }
             
             }
@@ -120,19 +105,13 @@ El método debe informar de los posibles errores mediante la excepcion
 OperationNotSupportedException. */
         public void borrar(String contacto) throws OperationNotSupportedException
         {
-          boolean encontrado = false;
-          int indice=0;
-            for (int i=0;i<contactos.length;i++) 
-            {//comprobamos que el contacto no es nulo  y comparamos que el nombre de cliente es igual a contacto
-                if (contactos[i] !=null && contactos[i].equals(contacto)) 
-                {
-                encontrado = true;
-                desplazarUnaPosicionHaciaIzquierda(indice);
-                }else               
-                {
-                    throw new OperationNotSupportedException("El contactoo a borrar no existe.");
-                }  
-            }
+            int i= buscarIndiceCliente(contacto);
+        
+            if (i==-1)
+            throw new OperationNotSupportedException("El contacto a borrar no existe.");
+        else
+            desplazarUnaPosicionHaciaIzquierda(i);
+          
         }    
         private void desplazarUnaPosicionHaciaIzquierda(int indice)
         {
@@ -147,7 +126,7 @@ OperationNotSupportedException. */
         {
             if (contactos[i] != null)
             {
-		numContactos += 1;
+		numContactos ++;
             }
 	}
         return numContactos;

@@ -8,7 +8,6 @@ public class MainApp {
     private static final String ERROR = "ERROR! Vuelva a intentarlo";
     private static final String EXITO = "La operación se realizo con ÉXITO";
     private static Agenda agenda;
-    private static Contacto contacto;
     //elegir la opcion del menu
         public static void main(String[] args) throws OperationNotSupportedException
         {
@@ -74,9 +73,7 @@ public class MainApp {
         }
 //añade los contactos a la agenda telefonica
     private static void anadirContacto() throws OperationNotSupportedException
-    {
-        agenda = new Agenda();
-        
+    {      
         String nombre;
         String telefono;
         String correo;
@@ -153,7 +150,7 @@ public class MainApp {
         {
             if(contactos[i] !=null)
                 lista++;
-                System.out.println(contactos[i].toString());
+                System.out.println(agenda.getNumContactos());
                 
         }
        ejecutarOpcion(elegirOpcion());     

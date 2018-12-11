@@ -11,7 +11,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class AgendaTest {
-/*	
+	
 	private static final String MENSAJE_EXCEPCION = "Debería haber saltado la excepción.";
 	private static final String MENSAJE_NO_EXCEPCION = "No debería haber saltado la excepción.";
 
@@ -148,6 +148,6 @@ public class AgendaTest {
 		}
 		assertNull(agenda.buscar(contacto3.getNombre()));
 		assertEquals(2, agenda.getNumContactos());
-	}*/
+	}
 
 }

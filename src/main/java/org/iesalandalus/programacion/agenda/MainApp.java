@@ -74,6 +74,7 @@ public class MainApp {
 //añade los contactos a la agenda telefonica
     private static void anadirContacto() throws OperationNotSupportedException
     {      
+        agenda=new Agenda();
         String nombre;
         String telefono;
         String correo;
@@ -102,6 +103,7 @@ public class MainApp {
     //el metodo para busqueda de contacto 
     private static void buscarContacto() throws OperationNotSupportedException 
     {
+        
         String nombre;
         
         System.out.println("Introduce el nombre del contacto  ");
@@ -143,14 +145,13 @@ public class MainApp {
 //muestra todos los contactos de la agenda
     private static void listarAgenda() throws OperationNotSupportedException {
         
-        int lista=0;
+       
         Contacto[] contactos = agenda.getContacto();
         
         for (int i=0;i<agenda.getNumContactos();i++)
         {
-            if(contactos[i] !=null)
-                lista++;
-                System.out.println(agenda.getNumContactos());
+   
+                System.out.println(agenda.getContacto());
                 
         }
        ejecutarOpcion(elegirOpcion());     

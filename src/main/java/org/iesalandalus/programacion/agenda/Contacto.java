@@ -16,7 +16,7 @@ import java.util.regex.Pattern;
 //la clase Contacto con sus atributos 
 public class Contacto {
     private static final String ER_TELEFONO="[69][0-9]{8}";
-    private static final String ER_CORREO="^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,4})$";
+    private static final String ER_CORREO="([a-zA-z0-9.-_]{1,}@)([a-zA-z0-9]{1,}.)([a-z]{2,3})";
     private String nombre;
     private String telefono;
     private String correo;
@@ -88,14 +88,14 @@ public class Contacto {
          /*Para la validación de correo electronico voy usar  el método estático 
             compile de la clase Pattern que permite crear expresión 
             regular o patrón.*/         
-        if (correo == null || correo.equals("")) {
+        if (correo == null || correo.equals(""))
+        {
             throw new IllegalArgumentException("El correo de un contacto no puede ser nulo o vacío.");
-        } 
-        if (Pattern.matches(ER_CORREO, correo)) {
-		this.correo = correo;
-            }else {
-                throw new IllegalArgumentException("El correo no tiene un formato válido.");
-		}       
+	} else 	if (correo.matches(ER_CORREO)) {
+            this.correo = correo;
+	}else {
+            throw new IllegalArgumentException("El correo no tiene un formato válido.");
+        }		    
 } 
     // creamos el metodo to string 
     @Override

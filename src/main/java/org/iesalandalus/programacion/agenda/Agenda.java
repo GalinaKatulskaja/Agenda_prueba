@@ -21,6 +21,7 @@ public class Agenda {
     public Agenda()
     {
         this.contactos = new Contacto[MAX_CONTACTOS];
+       
         this.numContactos = 0;
     }
     //creamos el metodo añadir, haciendo la llamada de los metodos internos
@@ -28,17 +29,20 @@ public class Agenda {
   
         public void anadir(Contacto contacto ) throws OperationNotSupportedException
         {         
+            
              int indice=0;
              try {
                 indice = buscarPrimerIndiceComprobandoExistencia(contacto);
-                } catch (OperationNotSupportedException e) {                
-                    e.getMessage();
-                }   
                 if(indiceNoSuperaTamano(indice)) {
                     contactos[indice] = contacto;
+                    numContactos =+1;
                 } else {
                      throw new OperationNotSupportedException("El array esta lleno.");
                      }
+                } catch (OperationNotSupportedException e) {                
+                    e.getMessage();
+                }   
+                
         }
         //se crea un metodo para buscar el primer indice libre    
         private int buscarPrimerIndiceComprobandoExistencia(Contacto contacto) throws OperationNotSupportedException
@@ -73,23 +77,24 @@ public class Agenda {
         public Contacto buscar(String contacto)
         {
              //llamamos el metodo buscarIndiceCliente, para recorrer el array de clientes y compararmos con los contactos existentes. 
-                int indice = buscarIndiceCliente(contacto);
+                int indice= buscarIndiceCliente(contacto);
                 Contacto encontrado = null;
                 if(indice<contactos.length)
                 {
                    encontrado = contactos[indice];
+                    return encontrado;
                 }
-                else{return null;}    
-            return encontrado;       
+                else {return null;}  
+            
+                   
         }
         //creamos el metodo privado para apoyarnos en la busqueda de los contactos
         private int buscarIndiceCliente(String cliente)
         {   
-            Contacto contacto =null;
             int indiceCliente = 0;
             for (int i=0;i<contactos.length;i++) 
             {//comprobamos que el contacto no es nulo  y comparamos que el nombre de cliente es igual a contacto
-                if (contactos[i] !=null && contacto.getNombre().equals(contacto)) 
+                if (contactos[i] !=null && contactos[i].getNombre().equals(cliente)) 
                 {
                 return indiceCliente =i;
                 }
@@ -111,6 +116,7 @@ OperationNotSupportedException. */
             throw new OperationNotSupportedException("El contacto a borrar no existe.");
         else
             desplazarUnaPosicionHaciaIzquierda(i);
+            numContactos=-1;
           
         }    
         private void desplazarUnaPosicionHaciaIzquierda(int indice)
@@ -122,6 +128,7 @@ OperationNotSupportedException. */
         }
     public int getNumContactos() 
     {
+        numContactos=0;
         for (int i = 0; i < contactos.length - 1; i++) 
         {
             if (contactos[i] != null)
